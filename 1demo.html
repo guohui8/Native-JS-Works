@@ -1,10 +1,280 @@
-<!doctype html>
-<html lang="en">
+<!DOCTYPE HTML>
+<html>
 <head>
-    <meta charset="UTF-8">
-    <title>Document</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>无标题文档</title>
+<style>
+/* reset start */
+html,body{ overflow:hidden; height:100%;}
+body,h1,h2,h3,h4,p,ul,ol{ padding:0; margin:0; font:14px "微软雅黑";}
+li{ list-style:none;}
+img{ border:none;}
+a{ text-decoration:none;}
+a:active{ color:#009ee0;}
+/* reset end */
+
+/* common start */
+.clear{zoom:1;}
+.clear:after{ content:""; display:block; clear:both;}
+/* common end */
+
+/* frame start */
+#main{ width:100%; height:100%;}
+#header{ width:100%; height:80px; background:white;}
+#headerMain{ max-width:1100px; height:100%; margin:0 auto; position:relative;}
+#logo{ float:left; margin-top:30px;}
+#nav{ float:right; margin-top:50px;}
+#nav li{ float:left; position:relative; margin-left:40px;}
+#nav li .up{ position:absolute; left:0; top:0; color:black; width:0%; overflow:hidden; transition:all .5s;}
+#nav li:hover .up{ width:100%;}
+#arrow{ width:21px; height:11px; background:url(img/menuIndicator.png) no-repeat; position:absolute; left:50%; bottom:-11px; transition:.5s left; z-index:10;}
+#content{ width:100%; position:relative; overflow:hidden;}
+#list{ width:100%; position:absolute; top:0; left:0; transition:.5s top;}
+#list .liList{ width:2000px; position:relative; left:50%; margin-left:-1000px; overflow:hidden;}
+#list .divList{ width:1100px; height:520px; background:red; margin:0px auto;}
+/* frame end */
+
+/* home start */
+#home{ background:url(img/bg1.jpg) no-repeat;}
+/* home end */
+
+/* course start */
+#course{ background:url(img/bg3.jpg) no-repeat;}
+/* course end */
+
+/* works start */
+#works{ background:url(img/bg4.jpg) no-repeat;}
+/* works end */
+
+/* about start */
+#about{ background:url(img/bg5.jpg) no-repeat;}
+/* about end */
+
+/* team start */
+#team{ background:url(img/bg2.jpg) no-repeat;}
+/* team end */
+
+</style>
+<script>
+
+//console.log( window.innerWidth );    1366
+//console.log( window.innerHeight );   654  /  643
+
+
+window.onload = function(){
+	
+	var oHeader = $('header');
+	var oNav = $('nav');
+	var oArrow = $('arrow');
+	var oList = $('list');
+	var oContent = $('content');
+	var aLiNav = oNav.getElementsByTagName('li');
+	var aLiList = getByClass( oList , 'liList' );
+	var aDivList = getByClass( oList , 'divList' );
+	var iNow = 0;
+	var iContentHeight = 0;
+	
+	contentAuto();
+	listContentAuto();
+	bindNav();
+	mouseWheel();
+	window.onresize = fnResize;
+	
+	function bindNav(){
+		
+		var oDiv = aLiNav[0].getElementsByTagName('div')[0];
+		oDiv.style.width = '100%'; //让第一个图标默认黑色
+		oArrow.style.left = aLiNav[0].offsetLeft + aLiNav[0].offsetWidth/2 - oArrow.offsetWidth/2 + 'px';//确定箭头的位置
+		
+		for(var i=0;i<aLiNav.length;i++){
+			aLiNav[i].index = i;
+			aLiNav[i].onmousedown = function(){
+				toMove( this.index );
+				iNow = this.index;
+			};
+		}
+	}
+	
+	function toMove(index){
+		for(var i=0;i<aLiNav.length;i++){  //先让每一个置为蓝色
+			var oDiv = aLiNav[i].getElementsByTagName('div')[0];
+			oDiv.style.width = '';
+		}
+		var oDiv = aLiNav[index].getElementsByTagName('div')[0];//让点击的那个设置成黑色
+		oDiv.style.width = '100%';
+		
+		oArrow.style.left = aLiNav[index].offsetLeft + aLiNav[index].offsetWidth/2 - oArrow.offsetWidth/2 + 'px';//让箭头也跟着变化
+
+		
+		oList.style.top = - index * iContentHeight + 'px';//点击每个模块移动的同时改变其高度
+		
+	}
+	
+	function contentAuto(){  
+		iContentHeight = viewHeight() - oHeader.offsetHeight;
+		oContent.style.height = iContentHeight + 'px';  //让每个内容的高度自适应
+		for(var i=0;i<aLiList.length;i++){
+			aLiList[i].style.height = iContentHeight + 'px';
+		}
+		oList.style.top = - iNow * iContentHeight + 'px'; //iContentHeight为每一块的高度
+	}
+	
+	function listContentAuto(){
+		var mt = (iContentHeight - 520)/2;
+		for(var i=0;i<aDivList.length;i++){
+			aDivList[i].style.marginTop = mt + 'px';
+		}
+	}
+	
+	function fnResize(){
+		contentAuto();
+		listContentAuto();
+	}
+	
+	function mouseWheel(){
+		//火狐 : DOMMouseScroll( DOM事件必须用绑定事件的方式去写 addEventListener )
+		//IE ,  谷歌 : mousewheel
+		var bBtn = true;
+		var timer = null;
+		if(oContent.addEventListener){
+			oContent.addEventListener('DOMMouseScroll',function(ev){
+				var ev = ev || window.event;
+				clearTimeout(timer);
+				timer = setTimeout(function(){
+					toChange(ev);
+				},200);
+			},false);
+		}
+		oContent.onmousewheel = function(){
+			var ev = ev || window.event;
+			clearTimeout(timer);
+			timer = setTimeout(function(){
+				toChange(ev);
+			},200);
+		};
+		
+		function toChange(ev){
+			//alert(ev.detail);  //↓ 3  ↑ -3
+			//alert(ev.wheelDelta); //↓ -120  ↑ 120
+            //bBTn代表的是方向，true代表向下
+			if(ev.detail){
+				bBtn = ev.detail > 0 ? true : false;
+			}
+			else{
+				bBtn = ev.wheelDelta < 0 ? true : false;
+			}
+			if(bBtn){   //↓
+				if(iNow != aLiList.length-1){
+					iNow++;
+				}
+				toMove(iNow);
+			}
+			else{   //↑
+				if(iNow != 0){
+					iNow--;
+				}
+				toMove(iNow);
+			}
+			
+			if(ev.preventDefault){
+				ev.preventDefault();
+			}
+			else{
+				return false;
+			}
+		}
+		
+	}
+	
+	function $(id){
+		return document.getElementById(id);
+	}
+	
+	function viewWidth(){
+		return window.innerWidth || document.documentElement.clientWidth;
+	}
+	
+	function viewHeight(){
+		return window.innerHeight || document.documentElement.clientHeight;
+	}
+	
+	function getByClass(oParent,sClass){//获取子元素节点，不包括子元素的子元素，以数组返回
+		var aElem = oParent.getElementsByTagName('*');
+		var arr = [];
+		for(var i=0;i<aElem.length;i++){
+			if( aElem[i].className == sClass ){
+				arr.push( aElem[i] );
+			}
+		}
+		return arr;
+	}
+	
+};
+
+</script>
 </head>
+
 <body>
-    
+<div id="main">
+	<div id="header">
+    	<div id="headerMain">
+        	<a href="http://www.miaov.com" id="logo">
+            	<img src="img/logo.png">
+            </a>
+            <ul id="nav">
+            	<li>
+                	<a href="javascript:;">
+                    	<div class="up"><img src="img/home_gruen.png"></div>
+                        <div><img src="img/home.png"></div>
+                    </a>
+                </li>
+                <li>
+                	<a href="javascript:;">
+                    	<div class="up">Course</div>
+                        <div>Course</div>
+                    </a>
+                </li>
+                <li>
+                	<a href="javascript:;">
+                    	<div class="up">Works</div>
+                        <div>Works</div>
+                    </a>
+                </li>
+                <li>
+                	<a href="javascript:;">
+                    	<div class="up">About</div>
+                        <div>About</div>
+                    </a>
+                </li>
+                <li>
+                	<a href="javascript:;">
+                    	<div class="up">Team</div>
+                        <div>Team</div>
+                    </a>
+                </li>
+            </ul>
+            <div id="arrow"></div>
+        </div>
+    </div>
+    <div id="content">
+    	<ul id="list">
+        	<li id="home" class="liList">
+            	<div class="divList">111111</div>
+            </li>
+            <li id="course" class="liList">
+            	<div class="divList">222222</div>
+            </li>
+            <li id="works" class="liList">
+            	<div class="divList">333333</div>
+            </li>
+            <li id="about" class="liList">
+            	<div class="divList">444444</div>
+            </li>
+            <li id="team" class="liList">
+            	<div class="divList">555555</div>
+            </li>
+        </ul>
+    </div>
+</div>
 </body>
 </html>
