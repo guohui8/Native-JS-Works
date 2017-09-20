@@ -2,7 +2,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<title>无标题文档</title>
+<title>原生js作品展示</title>
 <style>
 /* reset start */
 html,body{ overflow:hidden; height:100%;}
@@ -16,19 +16,22 @@ a:active{ color:#009ee0;}
 /* common start */
 .clear{zoom:1;}
 .clear:after{ content:""; display:block; clear:both;}
-.commonTitle{ color:#009ee0; font-size:80px; line-height:0.8; font-weight:bold; letter-spacing:-5px;}
+.commonTitle{ color:#009ee0; font-size:60px; line-height:1.0; font-weight:bold; letter-spacing:-5px;}
 .commonText{ color:white; line-height:1.5; font-size:15px;}
 /* common end */
 
 /* frame start */
 #main{ width:100%; height:100%;}
-#header{ width:100%; height:80px; background:white;}
+#header{ width:100%; height:80px; background:#2ba5d9;}
 #headerMain{ width:1100px; height:100%; margin:0 auto; position:relative;}
 #logo{ float:left; margin-top:30px;}
 #nav{ float:right; margin-top:50px;}
 #nav li{ float:left; position:relative; margin-left:40px;}
-#nav li .up{ position:absolute; left:0; top:0; color:black; width:0%; overflow:hidden; transition:.5s width;}
+#nav li .up{ position:absolute; left:0; top:0; color:yellow; width:0%; overflow:hidden; }
 #nav li:hover .up{ width:100%;}
+#nav div{
+	color:white;
+}
 #arrow{ width:21px; height:11px; background:url(img/menuIndicator.png) no-repeat; position:absolute; left:50%; bottom:-11px; transition:.5s left; z-index:10;}
 #content{ width:100%; position:relative; overflow:hidden;}
 #list{ width:100%; position:absolute; top:0; left:0; transition:.5s top;}
@@ -37,15 +40,22 @@ a:active{ color:#009ee0;}
 #menu{ position:fixed; right:0; top:50%; z-index:20;}
 #menu li{ width:10px; height:10px; border-radius:50%; margin:10px; border:1px white solid; cursor:pointer;}
 #menu li.active{ background:white; cursor:default;}
+
 /* frame end */
 
 /* home start */
 #home{ background:url(img/bg1.jpg) no-repeat;}
 #homeContent .homeContent1{ width:100%; height:100%; position:relative; perspective:800px; transform-style:preserve-3d; -webkit-perspective:800px; -webkit-transform-style:preserve-3d; transition:1s;}
 #homeContent .homeContent1 li{  width:100%; height:100%; position:absolute; left:0; top:0; background:black; visibility:hidden;}
+/*
 #homeContent .homeContent1 li:nth-of-type(1){background:#dc6c5f;}
 #homeContent .homeContent1 li:nth-of-type(2){background:#95dc84;}
 #homeContent .homeContent1 li:nth-of-type(3){background:#64b9d2;}
+*/
+#homeContent .homeContent1 li:nth-of-type(1){background:url(img/layer1.jpg) no-repeat;}
+#homeContent .homeContent1 li:nth-of-type(2){background:url(img/layer2.jpg) no-repeat;}
+#homeContent .homeContent1 li:nth-of-type(3){background:url(img/layer3.jpg) no-repeat;}
+#homeContent .homeContent1 li:nth-of-type(4){background:url(img/layer4.jpg) no-repeat;}
 #homeContent .homeContent1 li h1{ color:white; text-align:center; padding-top:200px;}
 #homeContent .homeContent1 li.active{ z-index:1; visibility:visible;}
 
@@ -112,8 +122,8 @@ a:active{ color:#009ee0;}
 #course .courseContent3{ width:480px; position:absolute; right:50px; top:70px; z-index:1;}
 #course .courseLine{ width:9px; height:410px; background:url(img/plus_row.png) no-repeat; position:absolute; left:0; top:0; margin-top:-5px; margin-left:-5px;}
 #course .courseLogo{ width:120px; height:132px; float:left; margin-top:1px; position:relative; cursor:pointer; perspective:800px; -webkit-perspective:800px;}
-#course .courseBefore{ width:100%; height:100%; position:absolute; left:0; top:0; background-repeat:no-repeat; background-position:center center;  backface-visibility:hidden; -webkit-backface-visibility:hidden; transition:1s;}
-#course .courseAfter{ width:100%; height:100%; position:absolute; left:0; top:0; background:#009ee0; color:white; padding:15px; box-sizing:border-box; text-indent:2em; transform:rotateY(-180deg); -webkit-transform:rotateY(-180deg); backface-visibility:hidden;  -webkit-backface-visibility:hidden; transition:1s;}
+#course .courseBefore{ width:100%; height:100%; position:absolute; left:0; top:0; background-repeat:no-repeat; background-position:center center;  backface-visibility:hidden; -webkit-backface-visibility:hidden; transition:1s;text-align:left;}
+#course .courseAfter{ width:100%; height:100%; position:absolute; left:0; top:0; background:#009ee0; color:white; padding:15px; box-sizing:border-box; text-indent:2em; transform:rotateY(-180deg); -webkit-transform:rotateY(-180deg); backface-visibility:hidden;  -webkit-backface-visibility:hidden; transition:1s;text-align:left;}
 #course .courseLogo:hover .courseBefore{ transform:rotateY(180deg); -webkit-transform:rotateY(180deg);}
 #course .courseLogo:hover .courseAfter{ transform:rotateY(0deg); -webkit-transform:rotateY(0deg);}
 #course .plane1{ width:359px; height:283px; background:url(img/plane1.png) no-repeat; position:absolute; left:300px; top:-100px; transition:1s;}
@@ -423,10 +433,10 @@ window.onload = function(){
 	function workContent(){
 		//oWorksContent2
 		var data = [
-			{ img : 'img/worksimg1.jpg' , text : '测试文字，哈哈哈啊司法所地1' },
-			{ img : 'img/worksimg2.jpg' , text : '测试文字，哈哈哈啊司法所地2' },
-			{ img : 'img/worksimg3.jpg' , text : '测试文字，哈哈哈啊司法所地3' },
-			{ img : 'img/worksimg4.jpg' , text : '测试文字，哈哈哈啊司法所地4' }
+			{ img : 'img/worksimg1.jpg' , text : 'keyframes' },
+			{ img : 'img/worksimg2.jpg' , text : 'animation' },
+			{ img : 'img/worksimg3.jpg' , text : 'transform perspective' },
+			{ img : 'img/worksimg4.jpg' , text : 'rotate translate transition' }
 		];
 		for(var i=0;i<data.length;i++){
 			var oDivParent = document.createElement('div');
@@ -446,10 +456,10 @@ window.onload = function(){
 		var iNowHome = 0;
 		
 		var data = [
-			{ text : 'one layer'},
-			{ text : 'two layer'},
-			{ text : 'three layer'},
-			{ text : 'four layer'}
+			{ text : ''},
+			{ text : ''},
+			{ text : ''},
+			{ text : ''}
 		];
 		create();
 		function create(){
@@ -516,18 +526,18 @@ window.onload = function(){
 	function courseContent(){
 		//oCourseContent3
 		var data = [
-			{ img : 'img/binoli.png' , text : '测试文字111' },
-			{ img : 'img/bks.png' , text : '测试文字222' },
-			{ img : 'img/gu.png' , text : '测试文字333' },
-			{ img : 'img/hlx.png' , text : '测试文字444' },
-			{ img : 'img/binoli.png' , text : '测试文字111' },
-			{ img : 'img/binoli.png' , text : '测试文字111' },
-			{ img : 'img/binoli.png' , text : '测试文字111' },
-			{ img : 'img/binoli.png' , text : '测试文字111' },
-			{ img : 'img/binoli.png' , text : '测试文字111' },
-			{ img : 'img/binoli.png' , text : '测试文字111' },
-			{ img : 'img/binoli.png' , text : '测试文字111' },
-			{ img : 'img/binoli.png' , text : '测试文字111' }
+			{ img : 'img/icon_1.png' , text : '滚轮操作onmousewheel' },
+			{ img : 'img/icon_2.png' , text : '获取class，getByClass封装' },
+			{ img : 'img/icon_3.png' , text : '可视区宽高获取:clientWidth' },
+			{ img : 'img/icon_4.png' , text : '统一的前缀设置：setStyle' },
+			{ img : 'img/icon_5.png' , text : '入场与出场的设置：inAn outAn' },
+			{ img : 'img/icon_6.png' , text : '曲线算法：sin与单位圆' },
+			{ img : 'img/icon_7.png' , text : '数据的创建：{}与createElement' },
+			{ img : 'img/icon_8.png' , text : 'loading效果：new Image' },
+			{ img : 'img/icon_9.png' , text : 'CSS3事件：transitionend' },
+			{ img : 'img/icon_10.png' , text : 'canvas操作：getContext("2d")' },
+			{ img : 'img/icon_11.png' , text : '音乐播放' },
+			{ img : 'img/icon_12.png' , text : 'keyframes animation transform' }
 		];
 		create();
 		function create(){
@@ -875,7 +885,7 @@ window.onload = function(){
     </div>
 	<div id="header">
     	<div id="headerMain">
-        	<a href="http://www.miaov.com" id="logo">
+        	<a href="http://www.guohui6.com" id="logo">
             	<img src="img/logo.png">
             </a>
             <div id="music">
@@ -890,26 +900,26 @@ window.onload = function(){
                 </li>
                 <li>
                 	<a href="javascript:;">
-                    	<div class="up">Course</div>
-                        <div>Course</div>
+                    	<div class="up">翻页</div>
+                        <div>翻页</div>
                     </a>
                 </li>
                 <li>
                 	<a href="javascript:;">
-                    	<div class="up">Works</div>
-                        <div>Works</div>
+                    	<div class="up">太空步</div>
+                        <div>太空步</div>
                     </a>
                 </li>
                 <li>
                 	<a href="javascript:;">
-                    	<div class="up">About</div>
-                        <div>About</div>
+                    	<div class="up">网格</div>
+                        <div>网格</div>
                     </a>
                 </li>
                 <li>
                 	<a href="javascript:;">
-                    	<div class="up">Team</div>
-                        <div>Team</div>
+                    	<div class="up">曲线</div>
+                        <div>曲线</div>
                     </a>
                 </li>
             </ul>
@@ -949,16 +959,15 @@ window.onload = function(){
             	<div id="courseContent" class="divList">
                 	<div class="courseContent1">
                     	<h1 class="commonTitle">
-                        	<span>EINIGE</span><br>
-                            <span>UNSERER</span><br>
-                            <span>KUNDEN</span>
+                        	<span>JS+CSS3</span><br>
+                            <span>翻牌效果</span><br>
+                            
                         </h1>
                     </div>
                     <div class="courseContent2">
                     	<p class="commonText">
-                        	Das Kundenvertrauen in unsere Kompetenz ist die notwendige Basis einer erfolgreichen Zusammenarbeit, gleichzeitig aber auch das größte Lob, das man uns entgegenbringen kann. 
-                            <br>
-                            Diese und viele weitere große und kleine Kunden vertrauen uns seit Jahren, was uns stolz macht, und dafür sagen wir an dieser Stelle einfach mal. 
+                        	运用JavaScript+CSS3打造炫酷的翻牌效果，综合运用了CSS3中的keyframes  animation   transform  rotate   scale   translate  transition perspective  preserve-3d等知识点……
+
                         </p>
                     </div>
                     <div class="courseContent3">
@@ -1025,9 +1034,9 @@ window.onload = function(){
             	<div id="worksContent" class="divList">
                 	<div class="worksContent1">
                     	<h1 class="commonTitle">
-                        	<span>EINBLICK</span><br>
-                            <span>ERKENNTNIS</span><br>
-                            <span>ERGEBNIS</span>
+                        	<span>运用CSS3</span><br>
+                            <span>制作机器人</span><br>
+                            <span>不间断动画</span>
                         </h1>
                     </div>
                     <div class="worksContent2">
@@ -1070,14 +1079,14 @@ window.onload = function(){
             	<div id="aboutContent" class="divList">
                 	<div class="aboutContent1">
                     	<h1 class="commonTitle">
-                        	<span>DIE</span><br>
-                            <span>SPEZIELLE</span><br>
-                            <span>VIELFALT</span>
+                        	<span>网格算法</span><br>
+                            <span>万花筒</span><br>
+                            <span>图片展示</span>
                         </h1>
                     </div>
                     <div class="aboutContent2">
                     	<p class="commonText">
-                        	Der bunte Medienmix ist die Faszination die uns antreibt und das, was man an uns schätzt. Von A bis Z und von vorne bis hinten nehmen wir Ihr Projekt unter unsere Fittiche und lassen es zu etwas Großartigem heranwachsen. 
+							运用网格算法，配合JS与CSS3的相关知识点：CSS3事件(transitionend)keyframes  animation   transform  rotate   scale   translate  transition perspective  preserve-3d等，打造炫酷图片展示效果
                         </p>
                     </div>
                     <div class="aboutContent3">
@@ -1099,15 +1108,13 @@ window.onload = function(){
             	<div id="teamContent" class="divList">	
                 	<div class="teamContent1">
                     	<h1 class="commonTitle">
-                        	<span>WIR SIND</span><br>
-                            <span>VOXELAIR</span>
+                        	<span>canvas</span><br>
+                            <span>曲线算法</span>
                         </h1>
                     </div>
                     <div class="teamContent2">
                     	<p class="commonText">
-                        	Wir sind seit 2002 eine Full-Service-Werbeagentur mit Stammsitz in Heimsheim, zwischen Stuttgart und Karlsruhe. 
-                            <br>
-                            Über 60 Jahre Erfahrung vereinen das gesamte VoxelAir-Team. Dabei hat jedes Voxel neben professionellem Allroundwissen auch sein ganz spezielles Gebiet, um selbst die individuellsten Kundenwünsche schnell und kompetent umzusetzen. 
+                           关于我们的气泡上升效果，体现灵动活力的象征，在众多展示效果中，它无疑是极其抓眼球的一种表现形式，综合运用到 HTML5 的 canvas操作(getContext('2d')) ，以及曲线算法……
                         </p>
                     </div>
                     <div class="teamContent3"></div>
